@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: pulseboard_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/config/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - pulseboard_network
+
+  backend:
+    build: ./backend
+    container_name: pulseboard_backend
+    environment:
+      DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: 4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    networks:
+      - pulseboard_network
+
+  analytics:
+    build: ./analytics
+    container_name: pulseboard_analytics
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - pulseboard_network
+
+# frontend:
+  #   build: ./frontend
+  #   container_name: pulseboard_frontend
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - pulseboard_network
+
+volumes:
+  postgres_data:
+
+networks:
+  pulseboard_network:
+    driver: bridge
