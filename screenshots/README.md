@@ -132,32 +132,36 @@ npm run dev
 
 ## 📁 Structure du projet
 
+## 📁 Structure du projet
+
+```
 PulseBoard/
-├── frontend/ # React + TypeScript + Tailwind
-│ └── src/
-│ ├── api/ # Client Axios
-│ ├── components/ # MetricCard, MetricChart, AlertBanner
-│ ├── context/ # AuthContext (JWT)
-│ ├── hooks/ # useMetrics, useAlerts
-│ └── pages/ # Login, Register, Dashboard
+├── frontend/              # React + TypeScript + Tailwind
+│   └── src/
+│       ├── api/           # Client Axios
+│       ├── components/    # MetricCard, MetricChart, AlertBanner
+│       ├── context/       # AuthContext (JWT)
+│       ├── hooks/         # useMetrics, useAlerts
+│       └── pages/         # Login, Register, Dashboard
 │
-├── backend/ # Node.js + Express + TypeScript
-│ └── src/
-│ ├── config/ # DB + init.sql
-│ ├── controllers/ # Logique HTTP
-│ ├── middleware/ # Auth JWT
-│ ├── models/ # Types TypeScript
-│ ├── routes/ # Définition des endpoints
-│ └── services/ # Logique métier
+├── backend/               # Node.js + Express + TypeScript
+│   └── src/
+│       ├── config/        # DB + init.sql
+│       ├── controllers/   # Logique HTTP
+│       ├── middleware/    # Auth JWT
+│       ├── models/        # Types TypeScript
+│       ├── routes/        # Définition des endpoints
+│       └── services/      # Logique métier
 │
-├── analytics/ # Python + FastAPI
-│ ├── routers/ # Endpoints analytics
-│ ├── database.py # Connexion PostgreSQL + Pandas
-│ └── main.py
+├── analytics/             # Python + FastAPI
+│   ├── routers/           # Endpoints analytics
+│   ├── database.py        # Connexion PostgreSQL + Pandas
+│   └── main.py
 │
-├── .github/workflows/ # CI/CD GitHub Actions
+├── .github/workflows/     # CI/CD GitHub Actions
 ├── docker-compose.yml
 └── README.md
+```
 
 ---
 
