@@ -32,30 +32,30 @@ PulseBoard centralise ces métriques dans un dashboard visuel avec alertes autom
 ## 📸 Aperçu
 
 ### Page de connexion
-![Login](screenshots/login.png)
+![Login](screenshots/login.PNG)
 
 ### Dashboard principal
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/dashboard.PNG)
 
 ### Graphiques temps réel
-![Charts](screenshots/charts.png)
+![Charts](screenshots/charts.PNG)
 
 ---
-
 ## 🏗️ Architecture
-┌─────────────────┐ ┌──────────────────────┐ ┌─────────────────────┐
-│ Frontend │────▶│ Backend │────▶│ PostgreSQL │
-│ React / TS │ │ Node.js/Express/TS │ │ Base de données │
-│ Port 3000 │ │ Port 4000 │ │ Port 5432 │
-└─────────────────┘ └──────────────────────┘ └─────────────────────┘
-▲
-┌──────────────────────┐ │
-│ Analytics Service │────────────────┘
-│ Python / FastAPI │
-│ Port 8000 │
-└──────────────────────┘
 
----
+```
+┌─────────────────┐     ┌──────────────────────┐     ┌─────────────────────┐
+│   Frontend      │────▶│   Backend            │────▶│   PostgreSQL        │
+│   React / TS    │     │   Node.js/Express/TS │     │   Base de données   │
+│   Port 3000     │     │   Port 4000          │     │   Port 5432         │
+└─────────────────┘     └──────────────────────┘     └─────────────────────┘
+                                                                ▲
+                        ┌──────────────────────┐                │
+                        │   Analytics Service  │────────────────┘
+                        │   Python / FastAPI   │
+                        │   Port 8000          │
+                        └──────────────────────┘
+```
 
 ## 🛠️ Stack technique
 
@@ -129,8 +129,6 @@ npm run dev
 | `GET` | `/api/alerts/check` | Vérifier les alertes déclenchées |
 
 ---
-
-## 📁 Structure du projet
 
 ## 📁 Structure du projet
 
