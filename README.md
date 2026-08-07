@@ -25,9 +25,21 @@ PulseBoard centralise ces métriques dans un dashboard visuel avec alertes autom
 - 📊 **Graphiques interactifs** — courbes d'évolution par métrique (Recharts)
 - 🐍 **Analytics Python** — calcul de tendances (hausse/baisse/stable) avec Pandas
 - 🐳 **Containerisé** — lancement en une commande avec Docker Compose
-- ⚙️ **CI/CD** — pipeline GitHub Actions (build + lint sur 3 services)
+- ⚙️ **CI/CD** — pipeline GitHub Actions (build, tests, lint sur 3 services)
+- ✅ **Tests unitaires** — 14 tests Jest sur les services d'authentification et d'alertes
 
 ---
+
+## 🧪 Tests
+
+```bash
+cd backend
+npm test              # Lancer les tests
+npm run test:coverage # Avec rapport de couverture
+```
+
+Les tests couvrent la logique métier critique : hachage des mots de passe, validation des identifiants, et déclenchement des alertes sur seuils (incluant les cas limites).
+
 
 ## 📸 Aperçu
 
