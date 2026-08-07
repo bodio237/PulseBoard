@@ -8,7 +8,7 @@ on:
 
 jobs:
   backend:
-    name: Backend — Build & Lint
+    name: Backend — Build & Test
     runs-on: ubuntu-latest
 
     steps:
@@ -29,6 +29,10 @@ jobs:
       - name: Build TypeScript
         working-directory: backend
         run: npm run build
+      
+      - name: Run tests
+        working-directory: backend
+        run: npm test
 
   frontend:
     name: Frontend — Build & Lint
