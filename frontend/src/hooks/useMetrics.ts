@@ -56,10 +56,18 @@ export const useMetricTrend = (metricName: string) => {
     const fetch = async () => {
       try {
         const res = await client.get(`/metrics?name=${metricName}`);
-        setData(res.data.map((m: { value: number; recorded_at: string }) => ({
-          value: m.value,
-          recorded_at: new Date(m.recorded_at).toLocaleTimeString(),
-        })));
+        const points = res.data
+          .map((m: { value: number; recorded_at: string }) => ({
+            value: m.value,
+            timestamp: new Date(m.recorded_at).getTime(),
+            recorded_at: new Date(m.recorded_at).toLocaleTimeString('fr-FR', {
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+          }))
+          .sort((a: { timestamp: number }, b: { timestamp: number }) => a.timestamp - b.timestamp);
+
+        setData(points);
       } catch (e) {
         console.error(e);
       } finally {

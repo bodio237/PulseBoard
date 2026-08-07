@@ -18,10 +18,13 @@ interface Props {
 export default function MetricChart({ metricName, label, color }: Props) {
   const { data, loading } = useMetricTrend(metricName);
 
-  if (loading) {
+ if (loading) {
     return (
-      <div className="bg-gray-900 rounded-2xl p-6 flex items-center justify-center h-64">
-        <p className="text-gray-500">Chargement...</p>
+      <div className="bg-gray-900 rounded-2xl p-6">
+        <p className="text-gray-300 font-semibold mb-4">{label}</p>
+        <div className="flex items-center justify-center h-[200px]">
+          <p className="text-gray-500 text-sm">Chargement des données...</p>
+        </div>
       </div>
     );
   }
@@ -40,7 +43,12 @@ export default function MetricChart({ metricName, label, color }: Props) {
       <ResponsiveContainer width="100%" height={200}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-          <XAxis dataKey="recorded_at" tick={{ fill: '#9CA3AF', fontSize: 11 }} />
+          <XAxis
+            dataKey="recorded_at"
+            tick={{ fill: '#9CA3AF', fontSize: 11 }}
+            interval={Math.max(0, Math.floor(data.length / 6) - 1)}
+            minTickGap={20}
+          />
           <YAxis tick={{ fill: '#9CA3AF', fontSize: 11 }} />
           <Tooltip
             contentStyle={{ backgroundColor: '#1F2937', border: 'none', borderRadius: '8px' }}
